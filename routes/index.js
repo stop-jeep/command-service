@@ -14,11 +14,15 @@ router.post('/users/:id/balances', async function(req, res, next) {
     };
     var payload = {
       account_id: req.params.id,
-      amount: parseInt(req.body.amount, 10)
+      amount: parseInt(req.body.amount, 10),
+      time_stamp: Date.now()
     };
-  
+
     var hostname = process.env.EVENTSTORE_HOST;
     var port = process.env.EVENTSTORE_PORT;
+
+    console.log(payload)
+
     await axios.post(`http://${hostname}:${port}/streams/stop-jeep`, payload, { headers });
     res.send(201, 'Successful');
   } catch (error) {
