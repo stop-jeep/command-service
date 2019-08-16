@@ -9,7 +9,7 @@ router.post('/users/:id/balances', async function(req, res, next) {
   };
   var payload = {
     account_id: req.params.id,
-    amount: 5
+    amount: req.body.amount
   };
 
   var hostname = process.env.EVENTSTORE_HOST;
