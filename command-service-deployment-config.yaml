@@ -51,3 +51,13 @@ spec:
           value: stop-jeep
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/.env
+          subPath: .env
+      volumes:
+      - name: config-volume
+        configMap:
+          # Provide the name of the ConfigMap containing the files you want
+          # to add to the container
+          name: command-service
