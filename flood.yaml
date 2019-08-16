@@ -1,0 +1,11 @@
+config:
+  target: http:/
+  phases:
+    - duration: 10
+      arrivalRate: 1
+scenarios:
+  - flow:
+      - post:
+          url: /localhost:3000/users/b/balances
+          json:
+            amount: "{{$randomNumber(1,10)}}"
