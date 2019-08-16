@@ -5,8 +5,7 @@ var axios = require('axios');
 
 router.post('/users/:id/balances', async function(req, res, next) {
   try {
-    var amount = req.body.amount;
-    if (!isNumber(amount)) {
+    if (!isNumber(req.body.amount)) {
       throw new Error('Accept only number')
     }
     
@@ -15,7 +14,7 @@ router.post('/users/:id/balances', async function(req, res, next) {
     };
     var payload = {
       account_id: req.params.id,
-      amount: parseInt(amount, 10)
+      amount: parseInt(req.body.amount, 10)
     };
   
     var hostname = process.env.EVENTSTORE_HOST;
